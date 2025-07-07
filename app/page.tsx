@@ -37,7 +37,7 @@ export default function HomePage() {
             Next.js Starter Kit
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            A production-ready starter template with Next.js 14, TypeScript, Prisma, PostgreSQL, 
+            A production-ready starter template with Next.js 15, TypeScript, Prisma, PostgreSQL, 
             NextAuth.js, and shadcn/ui. Everything you need to build modern web applications.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -72,7 +72,7 @@ export default function HomePage() {
           <Card>
             <CardHeader>
               <Zap className="h-8 w-8 text-blue-600 mb-2" />
-              <CardTitle>Next.js 14</CardTitle>
+              <CardTitle>Next.js 15</CardTitle>
               <CardDescription>
                 Built with the latest Next.js App Router, TypeScript, and Tailwind CSS
               </CardDescription>
@@ -153,6 +153,7 @@ export default function HomePage() {
               "Tailwind CSS",
               "shadcn/ui",
               "Radix UI",
+              "PWA"
             ].map((tech) => (
               <div key={tech} className="text-center">
                 <div className="bg-gray-50 rounded-lg p-4 mb-2">

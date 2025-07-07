@@ -1,6 +1,6 @@
 # Next.js Starter Kit
 
-A production-ready starter template with Next.js 14, TypeScript, Prisma, PostgreSQL, NextAuth.js, and shadcn/ui.
+A production-ready starter template with Next.js 15, TypeScript, Prisma, PostgreSQL, NextAuth.js, and shadcn/ui.
 
 ![Next.js](https://img.shields.io/badge/Next.js-14-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
@@ -11,7 +11,7 @@ A production-ready starter template with Next.js 14, TypeScript, Prisma, Postgre
 
 ## 🚀 Features
 
-- ⚡ **Next.js 14** with App Router and TypeScript
+- ⚡ **Next.js 15** with App Router and TypeScript
 - 🎨 **shadcn/ui** components with Tailwind CSS
 - 🔐 **NextAuth.js** authentication (Email/Password + Google OAuth)
 - 🗄️ **PostgreSQL** database with Prisma ORM
@@ -22,7 +22,7 @@ A production-ready starter template with Next.js 14, TypeScript, Prisma, Postgre
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Next.js 14
+- **Framework:** Next.js 15
 - **Language:** TypeScript
 - **Database:** PostgreSQL
 - **ORM:** Prisma
@@ -97,7 +97,7 @@ Open [http://localhost:3000](http://localhost:3000) to see your application.
 ## 📁 Project Structure
 
 ```
-├── app/                    # Next.js 14 app directory
+├── app/                    # Next.js 15 app directory
 │   ├── api/               # API routes
 │   ├── auth/              # Authentication pages
 │   ├── dashboard/         # Protected dashboard
@@ -150,10 +150,10 @@ Built with shadcn/ui components:
 
 ```bash
 # Add new components
-npx shadcn-ui@latest add [component-name]
+npx shadcn@latest add [component-name]
 
 # Available components
-npx shadcn-ui@latest add button input label card form badge
+npx shadcn@latest add button input label card form badge
 ```
 
 ## 🚀 Deployment
@@ -226,7 +226,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you have any questions or need help, please open an issue or reach out on:
 
 - GitHub Issues: [Create an issue](https://github.com/sudotturi/next-js-auth-starter/issues)
-- Twitter: [@yourusername](https://twitter.com/yourusername)
+- Twitter: [@chitturi_rahul_](https://x.com/chitturi_rahul_)
 
 ---
 
