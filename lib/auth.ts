@@ -12,10 +12,13 @@ declare module "next-auth" {
   interface Session {
     user: {
       id: string
+      isActive: boolean
     } & DefaultSession["user"]
   }
   interface User extends DefaultUser {
     id: string
+    isActive: boolean,
+    emailVerified?: Date | null
   }
 }
 
@@ -45,6 +48,11 @@ export const authOptions: NextAuthOptions = {
           return null
         }
 
+        // Check if user is active (email verified)
+        if (!user.isActive) {
+          throw new Error("Please verify your email before signing in")
+        }
+
         const isValidPassword = await bcrypt.compare(
           credentials.password,
           user.password
@@ -58,6 +66,7 @@ export const authOptions: NextAuthOptions = {
           id: user.id,
           email: user.email,
           name: user.name,
+          isActive: user.isActive,
         }
       }
     })
@@ -72,14 +81,34 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id
+        token.isActive = user.isActive
       }
       return token
     },
     async session({ session, token }) {
       if (token && session.user) {
         session.user.id = token.id as string
+        session.user.isActive = token.isActive as boolean
       }
       return session
+    },
+  },
+  events: {
+    async createUser({ user }) {
+      // This event is triggered when a new user is created
+      // For Google OAuth users, ensure they're marked as active
+      if (user.email && user.emailVerified) {
+        try {
+          await prisma.user.update({
+            where: { id: user.id },
+            data: {
+              isActive: true,
+            }
+          })
+        } catch (error) {
+          console.error("Error in createUser event:", error)
+        }
+      }
     },
   },
 }

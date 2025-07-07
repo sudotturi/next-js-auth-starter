@@ -16,6 +16,8 @@ async function main() {
       email: 'demo@example.com',
       name: 'Demo User',
       password: hashedPassword,
+      isActive: true, // Set to true for demo purposes,
+      emailVerified: new Date(), // Set email as verified for demo
     },
   })
 

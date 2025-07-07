@@ -8,17 +8,21 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Mail } from "lucide-react"
 
 export function SignInForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
+  const [showVerificationPrompt, setShowVerificationPrompt] = useState(false)
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
+    setShowVerificationPrompt(false)
     setIsLoading(true)
 
     try {
@@ -29,12 +33,17 @@ export function SignInForm() {
       })
 
       if (result?.error) {
-        setError("Invalid credentials")
+        if (result.error === "Please verify your email before signing in") {
+          setShowVerificationPrompt(true)
+          setError("Please verify your email before signing in. Check your inbox for the verification link.")
+        } else {
+          setError("Invalid credentials")
+        }
       } else {
         router.push("/dashboard")
       }
     } catch (error) {
-      setError("An error occurred during sign in" + error)
+      setError("An error occurred during sign in")
     } finally {
       setIsLoading(false)
     }
@@ -55,6 +64,21 @@ export function SignInForm() {
               {error}
             </div>
           )}
+
+          {showVerificationPrompt && (
+            <Alert className="border-blue-200 bg-blue-50">
+              <Mail className="h-4 w-4" />
+              <AlertDescription className="text-sm">
+                Haven't received the verification email?{" "}
+                <Link 
+                  href="/auth/resend-verification" 
+                  className="text-blue-600 hover:underline font-medium"
+                >
+                  Resend verification email
+                </Link>
+              </AlertDescription>
+            </Alert>
+          )}
           
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
@@ -68,7 +92,15 @@ export function SignInForm() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="password">Password</Label>
+              <Link 
+                href="/auth/forgot-password" 
+                className="text-sm text-primary hover:underline"
+              >
+                Forgot password?
+              </Link>
+            </div>
             <Input
               id="password"
               type="password"

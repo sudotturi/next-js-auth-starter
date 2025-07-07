@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { signIn } from "next-auth/react"
+import { SignUpSuccessMessage } from "@/components/auth/signup-success-message"
 
 export function SignUpForm() {
   const [name, setName] = useState("")
@@ -16,6 +16,8 @@ export function SignUpForm() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [userEmail, setUserEmail] = useState("") // Store email for success message
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -29,6 +31,12 @@ export function SignUpForm() {
       return
     }
 
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters")
+      setIsLoading(false)
+      return
+    }
+
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
@@ -37,29 +45,32 @@ export function SignUpForm() {
       })
 
       if (response.ok) {
-        // Auto sign in after successful registration
-        const result = await signIn("credentials", {
-          email,
-          password,
-          redirect: false,
-        })
-
-        if (result?.error) {
-          setError("Registration successful, but sign in failed. Please try signing in.")
-        } else {
-          router.push("/dashboard")
-        }
+        const data = await response.json()
+        // Set success state and store email
+        setUserEmail(email)
+        setIsSuccess(true)
+        // Clear form data
+        setName("")
+        setEmail("")
+        setPassword("")
+        setConfirmPassword("")
       } else {
         const data = await response.json()
         setError(data.error || "Registration failed")
       }
     } catch (error) {
-      setError("An error occurred during registration" + error)
+      setError("An error occurred during registration")
     } finally {
       setIsLoading(false)
     }
   }
 
+  // Show success message if registration was successful
+  if (isSuccess) {
+    return <SignUpSuccessMessage email={userEmail} />
+  }
+
+  // Show signup form
   return (
     <Card className="w-[400px]">
       <CardHeader>
@@ -129,17 +140,6 @@ export function SignUpForm() {
             {isLoading ? "Creating Account..." : "Create Account"}
           </Button>
         </form>
-        
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">
-              Or continue with
-            </span>
-          </div>
-        </div>
         
         <div className="text-center text-sm text-muted-foreground">
           Already have an account?{" "}

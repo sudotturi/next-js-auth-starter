@@ -8,7 +8,6 @@ export const metadata = {
   title: 'SF Sudofolks',
   description: 'Next.js app with authentication and PWA support',
   manifest: '/manifest.json',
-  themeColor: '#2563eb',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',

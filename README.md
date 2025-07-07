@@ -43,7 +43,7 @@ A production-ready starter template with Next.js 14, TypeScript, Prisma, Postgre
 
 ```bash
 git clone https://github.com/sudotturi/next-js-auth-starter.git
-cd nextjs-starter
+cd next-js-auth-starter
 ```
 
 ### 2. Install dependencies
