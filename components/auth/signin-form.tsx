@@ -43,6 +43,7 @@ export function SignInForm() {
         router.push("/dashboard")
       }
     } catch (error) {
+      console.error("Sign in error:", error)
       setError("An error occurred during sign in")
     } finally {
       setIsLoading(false)
@@ -69,7 +70,7 @@ export function SignInForm() {
             <Alert className="border-blue-200 bg-blue-50">
               <Mail className="h-4 w-4" />
               <AlertDescription className="text-sm">
-                Haven't received the verification email?{" "}
+                Haven&apos;t received the verification email?{" "}
                 <Link 
                   href="/auth/resend-verification" 
                   className="text-blue-600 hover:underline font-medium"

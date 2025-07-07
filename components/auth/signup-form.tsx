@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -18,7 +17,6 @@ export function SignUpForm() {
   const [error, setError] = useState("")
   const [isSuccess, setIsSuccess] = useState(false)
   const [userEmail, setUserEmail] = useState("") // Store email for success message
-  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -45,7 +43,6 @@ export function SignUpForm() {
       })
 
       if (response.ok) {
-        const data = await response.json()
         // Set success state and store email
         setUserEmail(email)
         setIsSuccess(true)
@@ -59,6 +56,7 @@ export function SignUpForm() {
         setError(data.error || "Registration failed")
       }
     } catch (error) {
+      console.error("Registration error:", error)
       setError("An error occurred during registration")
     } finally {
       setIsLoading(false)

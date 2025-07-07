@@ -11,7 +11,6 @@ export function ResendVerificationForm() {
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState("")
-  const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,15 +30,13 @@ export function ResendVerificationForm() {
 
       if (response.ok) {
         setMessage(data.message)
-        setIsSuccess(true)
         setEmail("") // Clear form
       } else {
         setError(data.error || "Failed to send verification email")
-        setIsSuccess(false)
       }
     } catch (error) {
+      console.error("Error sending verification email:", error)
       setError("An error occurred. Please try again.")
-      setIsSuccess(false)
     } finally {
       setIsLoading(false)
     }

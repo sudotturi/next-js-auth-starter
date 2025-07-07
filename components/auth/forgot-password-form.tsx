@@ -35,6 +35,7 @@ export function ForgotPasswordForm() {
         setIsSuccess(false)
       }
     } catch (error) {
+      console.error("Error sending reset email:", error)
       setMessage("An error occurred. Please try again.")
       setIsSuccess(false)
     } finally {
@@ -47,7 +48,7 @@ export function ForgotPasswordForm() {
       <CardHeader>
         <CardTitle>Reset Password</CardTitle>
         <CardDescription>
-          Enter your email address and we'll send you a link to reset your password
+          Enter your email address and we&apos;ll send you a link to reset your password
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

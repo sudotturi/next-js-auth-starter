@@ -31,7 +31,7 @@ export function SignUpSuccessMessage({ email }: SignUpSuccessMessageProps) {
           
           <div className="space-y-2">
             <p className="text-sm text-gray-600">
-              We've sent a verification email to:
+              We&apos;ve sent a verification email to:
             </p>
             <p className="font-medium text-gray-900">{email}</p>
           </div>
@@ -45,7 +45,7 @@ export function SignUpSuccessMessage({ email }: SignUpSuccessMessageProps) {
         <div className="space-y-2">
           <Link href="/auth/resend-verification">
             <Button variant="outline" className="w-full">
-              Didn't receive email? Resend
+              Didn&apos;t receive email? Resend
             </Button>
           </Link>
           
@@ -57,7 +57,7 @@ export function SignUpSuccessMessage({ email }: SignUpSuccessMessageProps) {
         </div>
         
         <div className="text-xs text-gray-500 text-center">
-          Make sure to check your spam folder if you don't see the email.
+          Make sure to check your spam folder if you don&apos;t see the email.
         </div>
       </CardContent>
     </Card>

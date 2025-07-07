@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { CheckCircle, XCircle, Clock } from "lucide-react"
 
-export default function EnhancedVerifyEmailPage() {
+function VerifyEmailPage() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error' | 'expired'>('loading')
   const [message, setMessage] = useState('')
   const [showResendForm, setShowResendForm] = useState(false)
@@ -49,6 +49,7 @@ export default function EnhancedVerifyEmailPage() {
           }
         }
       } catch (error) {
+        console.error('Verification error:', error)
         setStatus('error')
         setMessage('An error occurred during verification')
       }
@@ -78,6 +79,7 @@ export default function EnhancedVerifyEmailPage() {
         setResendMessage(data.error || 'Failed to send verification email')
       }
     } catch (error) {
+      console.error('Error sending verification email:', error)
       setResendMessage('An error occurred. Please try again.')
     } finally {
       setResendLoading(false)
@@ -186,5 +188,13 @@ export default function EnhancedVerifyEmailPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function VerifyEmailPageWithSuspense() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VerifyEmailPage />
+    </Suspense>
   )
 }

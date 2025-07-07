@@ -97,11 +97,12 @@ export const authOptions: NextAuthOptions = {
     async createUser({ user }) {
       // This event is triggered when a new user is created
       // For Google OAuth users, ensure they're marked as active
-      if (user.email && user.emailVerified) {
+      if (user.email) {
         try {
           await prisma.user.update({
             where: { id: user.id },
             data: {
+              emailVerified: new Date(), // Set email as verified
               isActive: true,
             }
           })
