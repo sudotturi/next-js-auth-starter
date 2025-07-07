@@ -34,7 +34,7 @@ export function SignInForm() {
         router.push("/dashboard")
       }
     } catch (error) {
-      setError("An error occurred during sign in")
+      setError("An error occurred during sign in" + error)
     } finally {
       setIsLoading(false)
     }
@@ -103,7 +103,7 @@ export function SignInForm() {
         </Button>
         
         <div className="text-center text-sm text-muted-foreground">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/auth/signup" className="text-primary hover:underline">
             Sign up
           </Link>

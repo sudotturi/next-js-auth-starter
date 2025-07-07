@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Github, Database, Shield, Zap, Users, Code } from "lucide-react"
 
@@ -47,7 +47,7 @@ export default function HomePage() {
                 Get Started Free
               </Button>
             </Link>
-            <Link href="https://github.com/yourusername/nextjs-starter" target="_blank">
+            <Link href="https://github.com/sudotturi/next-js-auth-starter" target="_blank">
               <Button size="lg" variant="outline" className="w-full sm:w-auto">
                 <Github className="mr-2 h-4 w-4" />
                 View on GitHub
@@ -180,7 +180,7 @@ export default function HomePage() {
                 Try the Demo
               </Button>
             </Link>
-            <Link href="https://github.com/yourusername/nextjs-starter" target="_blank">
+            <Link href="https://github.com/sudotturi/next-js-auth-starter" target="_blank">
               <Button size="lg" variant="outline" className="w-full sm:w-auto text-blue border-white hover:bg-white hover:text-blue-600">
                 <Github className="mr-2 h-4 w-4" />
                 Star on GitHub
@@ -199,7 +199,7 @@ export default function HomePage() {
               <span className="ml-2 text-lg font-bold">SF Starter</span>
             </div>
             <div className="flex space-x-6">
-              <Link href="https://github.com/yourusername/nextjs-starter" className="text-gray-400 hover:text-white">
+              <Link href="https://github.com/sudotturi/next-js-auth-starter" className="text-gray-400 hover:text-white">
                 <Github className="h-6 w-6" />
               </Link>
             </div>

@@ -54,7 +54,7 @@ export function SignUpForm() {
         setError(data.error || "Registration failed")
       }
     } catch (error) {
-      setError("An error occurred during registration")
+      setError("An error occurred during registration" + error)
     } finally {
       setIsLoading(false)
     }

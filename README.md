@@ -42,7 +42,7 @@ A production-ready starter template with Next.js 14, TypeScript, Prisma, Postgre
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/nextjs-starter.git
+git clone https://github.com/sudotturi/next-js-auth-starter.git
 cd nextjs-starter
 ```
 
@@ -225,7 +225,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need help, please open an issue or reach out on:
 
-- GitHub Issues: [Create an issue](https://github.com/yourusername/nextjs-starter/issues)
+- GitHub Issues: [Create an issue](https://github.com/sudotturi/next-js-auth-starter/issues)
 - Twitter: [@yourusername](https://twitter.com/yourusername)
 
 ---
